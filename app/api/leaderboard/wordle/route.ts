@@ -12,7 +12,7 @@ export async function GET(req: NextRequest) {
   const lang = req.nextUrl.searchParams.get("lang") ?? "en";
   const res = await fetch(
     `${SB_URL}/rest/v1/wordle_streaks?select=username,streak,lang,created_at&lang=eq.${lang}&order=streak.desc&limit=10`,
-    { headers: sbHeaders(), next: { revalidate: 30 } }
+    { headers: sbHeaders(), cache: "no-store" }
   );
   return NextResponse.json(await res.json());
 }

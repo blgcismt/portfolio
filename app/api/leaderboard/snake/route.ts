@@ -11,7 +11,7 @@ export async function GET() {
   if (!SB_URL || !SB_KEY) return NextResponse.json([]);
   const res = await fetch(
     `${SB_URL}/rest/v1/snake_scores?select=username,score,created_at&order=score.desc&limit=10`,
-    { headers: sbHeaders(), next: { revalidate: 30 } }
+    { headers: sbHeaders(), cache: "no-store" }
   );
   return NextResponse.json(await res.json());
 }
