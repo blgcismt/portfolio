@@ -16,20 +16,29 @@ export default function About() {
     <section
       id="about"
       ref={ref}
-      className="flex flex-col items-center border-t border-[var(--border)] px-6 sm:px-8"
-      style={{ paddingTop: "7rem", paddingBottom: "7rem" }}
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        borderTop: "1px solid var(--border)",
+        padding: "7rem 2rem",
+      }}
     >
       <motion.div
-        className="w-full max-w-4xl"
+        style={{ width: "100%", maxWidth: "56rem" }}
         initial={{ opacity: 0, y: 40 }}
         animate={inView ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 0.7 }}
       >
-        <p className="text-[var(--accent)] text-xs tracking-[0.3em] uppercase mb-5 text-center">&#47;&#47; 01. about</p>
-        <h2 className="text-4xl md:text-5xl font-bold mb-16 text-center">Who I am</h2>
+        <p style={{ color: "var(--accent)", fontSize: "0.75rem", letterSpacing: "0.3em", textTransform: "uppercase", marginBottom: "1.5rem", textAlign: "center" }}>
+          &#47;&#47; 01. about
+        </p>
+        <h2 style={{ fontSize: "clamp(2rem, 5vw, 3.5rem)", fontWeight: 700, marginBottom: "3.5rem", textAlign: "center" }}>
+          Who I am
+        </h2>
 
-        <div className="grid lg:grid-cols-2 gap-16 mb-20">
-          <div className="space-y-6 text-[var(--text-muted)] leading-relaxed text-sm">
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: "4rem", marginBottom: "4rem" }}>
+          <div style={{ display: "flex", flexDirection: "column", gap: "2rem", color: "var(--text-muted)", lineHeight: 1.9, fontSize: "1rem" }}>
             <p>
               I&apos;m a Software Engineering co-op student at the University of Ottawa,
               currently interning at Bombardier Aerospace as a Data Engineer. I like
@@ -46,7 +55,7 @@ export default function About() {
             </p>
           </div>
 
-          <div className="space-y-5">
+          <div style={{ display: "flex", flexDirection: "column", gap: "0" }}>
             {[
               { k: "location", v: "Ottawa, ON 🇨🇦" },
               { k: "email", v: "ismetbilgicc@gmail.com", link: "mailto:ismetbilgicc@gmail.com" },
@@ -58,35 +67,43 @@ export default function About() {
                 initial={{ opacity: 0, x: 20 }}
                 animate={inView ? { opacity: 1, x: 0 } : {}}
                 transition={{ delay: 0.1 }}
-                className="flex gap-6 text-sm border-b border-[var(--border)] pb-5"
+                style={{ display: "flex", gap: "1.5rem", fontSize: "0.875rem", borderBottom: "1px solid var(--border)", padding: "1.75rem 0" }}
               >
-                <span className="text-[var(--accent)] w-20 shrink-0 text-xs tracking-wider uppercase">{k}</span>
+                <span style={{ color: "var(--accent)", width: "5rem", flexShrink: 0, fontSize: "0.7rem", letterSpacing: "0.1em", textTransform: "uppercase" }}>
+                  {k}
+                </span>
                 {link ? (
-                  <a href={link} target="_blank" rel="noopener noreferrer" className="text-[var(--text)] hover:text-[var(--accent)] transition-colors">
+                  <a href={link} target="_blank" rel="noopener noreferrer" style={{ color: "var(--text)", textDecoration: "none", transition: "color 0.2s" }}
+                    onMouseEnter={e => { (e.currentTarget as HTMLElement).style.color = "var(--accent)"; }}
+                    onMouseLeave={e => { (e.currentTarget as HTMLElement).style.color = "var(--text)"; }}
+                  >
                     {v} ↗
                   </a>
                 ) : (
-                  <span className="text-[var(--text)]">{v}</span>
+                  <span style={{ color: "var(--text)" }}>{v}</span>
                 )}
               </motion.div>
             ))}
           </div>
         </div>
 
-        <div className="grid grid-cols-3 gap-6">
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "1.5rem" }}>
           {stats.map(({ value, label, suffix }, i) => (
             <motion.div
               key={label}
               initial={{ opacity: 0, y: 20 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ delay: 0.15 * i }}
-              className="border border-[var(--border)] py-8 px-4 text-center hover:border-[var(--accent)] transition-colors duration-300"
-              style={{ background: "var(--bg-card)" }}
+              style={{ border: "1px solid var(--border)", padding: "3.5rem 1rem", textAlign: "center", background: "var(--bg-card)", transition: "border-color 0.3s", cursor: "default" }}
+              onMouseEnter={e => { (e.currentTarget as HTMLElement).style.borderColor = "var(--accent)"; }}
+              onMouseLeave={e => { (e.currentTarget as HTMLElement).style.borderColor = "var(--border)"; }}
             >
-              <div className="text-3xl font-bold text-[var(--accent)] mb-3">
-                {value}<span className="text-base text-[var(--text-muted)]">{suffix}</span>
+              <div style={{ fontSize: "2rem", fontWeight: 700, color: "var(--accent)", marginBottom: "0.75rem" }}>
+                {value}<span style={{ fontSize: "1rem", color: "var(--text-muted)" }}>{suffix}</span>
               </div>
-              <div className="text-[10px] tracking-widest uppercase text-[var(--text-muted)]">{label}</div>
+              <div style={{ fontSize: "0.625rem", letterSpacing: "0.2em", textTransform: "uppercase", color: "var(--text-muted)" }}>
+                {label}
+              </div>
             </motion.div>
           ))}
         </div>

@@ -2,10 +2,9 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 
-const links = [
-  { label: "email", value: "ismetbilgicc@gmail.com", href: "mailto:ismetbilgicc@gmail.com" },
-  { label: "linkedin", value: "linkedin.com/in/ismtblgc", href: "https://linkedin.com/in/ismtblgc" },
-  { label: "github", value: "github.com/blgcismt", href: "https://github.com/blgcismt" },
+const contactLinks = [
+  { k: "email",    v: "ismetbilgicc@gmail.com",  href: "mailto:ismetbilgicc@gmail.com" },
+  { k: "linkedin", v: "linkedin.com/in/ismtblgc", href: "https://linkedin.com/in/ismtblgc" },
 ];
 
 export default function Contact() {
@@ -16,50 +15,72 @@ export default function Contact() {
     <section
       id="contact"
       ref={ref}
-      className="flex flex-col items-center border-t border-[var(--border)] px-6 sm:px-8"
-      style={{ paddingTop: "7rem", paddingBottom: "7rem" }}
+      style={{ borderTop: "1px solid var(--border)", padding: "7rem 2rem", display: "flex", flexDirection: "column", alignItems: "center" }}
     >
       <motion.div
-        className="w-full max-w-2xl text-center"
+        style={{ width: "100%", maxWidth: "42rem" }}
         initial={{ opacity: 0, y: 40 }}
         animate={inView ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 0.7 }}
       >
-        <p className="text-[var(--accent)] text-xs tracking-[0.3em] uppercase mb-5">&#47;&#47; 05. contact</p>
-        <h2 className="text-4xl md:text-5xl font-bold mb-10">Let&apos;s Connect</h2>
-        <p className="text-[var(--text-muted)] text-sm leading-relaxed mb-16">
-          I&apos;m always open to new opportunities, collaborations, or just a good conversation.
-          Drop me a line. I read every message.
+        <p style={{ color: "var(--accent)", fontSize: "0.75rem", letterSpacing: "0.3em", textTransform: "uppercase", marginBottom: "1.25rem", textAlign: "center" }}>
+          &#47;&#47; 05. contact
         </p>
+        <h2 style={{ fontSize: "clamp(2rem, 5vw, 3.5rem)", fontWeight: 700, marginBottom: "3rem", textAlign: "center" }}>
+          Let&apos;s Connect
+        </h2>
 
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-5 mb-16">
-          {links.map((l, i) => (
+        {/* Status card */}
+        <div style={{ border: "1px solid var(--border)", background: "var(--bg-card)", padding: "2.25rem 2.5rem" }}>
+
+          {/* Status bar */}
+          <div style={{ display: "flex", alignItems: "center", gap: "0.625rem", marginBottom: "2rem" }}>
+            <motion.div
+              animate={{ scale: [1, 1.4, 1], opacity: [1, 0.5, 1] }}
+              transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+              style={{ width: "8px", height: "8px", borderRadius: "50%", background: "#34d399", boxShadow: "0 0 10px #34d399" }}
+            />
+            <span style={{ fontSize: "0.65rem", letterSpacing: "0.2em", textTransform: "uppercase", color: "#34d399", fontWeight: 600 }}>
+              Available for Opportunities
+            </span>
+          </div>
+
+          {/* Identity */}
+          <h3 style={{ fontSize: "1.5rem", fontWeight: 700, marginBottom: "0.4rem" }}>Ismet Bilgic</h3>
+          <p style={{ fontSize: "0.875rem", color: "var(--text-muted)", marginBottom: "0.3rem" }}>
+            Software Engineer · Data Engineer
+          </p>
+          <p style={{ fontSize: "0.8rem", color: "var(--text-muted)", marginBottom: "2rem" }}>
+            BASc Software Engineering @ University of Ottawa
+          </p>
+
+          {/* Divider */}
+          <div style={{ height: "1px", background: "var(--border)", marginBottom: "0" }} />
+
+          {/* Contact rows */}
+          {contactLinks.map(({ k, v, href }, i) => (
             <motion.a
-              key={l.label}
-              href={l.href}
-              target={l.href.startsWith("http") ? "_blank" : undefined}
-              rel={l.href.startsWith("http") ? "noopener noreferrer" : undefined}
-              initial={{ opacity: 0, y: 20 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ delay: 0.1 * i }}
-              className="border border-[var(--border)] p-6 text-left hover:border-[var(--accent)] hover:bg-[var(--bg-card)] transition-all duration-200 group"
+              key={k}
+              href={href}
+              target={href.startsWith("http") ? "_blank" : undefined}
+              rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
+              initial={{ opacity: 0, x: 16 }}
+              animate={inView ? { opacity: 1, x: 0 } : {}}
+              transition={{ delay: 0.3 + 0.1 * i }}
+              style={{ display: "flex", alignItems: "center", gap: "1.5rem", padding: "1.1rem 0", borderBottom: "1px solid var(--border)", textDecoration: "none", transition: "background 0.2s" }}
+              onMouseEnter={e => { (e.currentTarget as HTMLElement).style.paddingLeft = "0.5rem"; }}
+              onMouseLeave={e => { (e.currentTarget as HTMLElement).style.paddingLeft = "0"; }}
             >
-              <div className="text-[10px] tracking-widest uppercase text-[var(--accent)] mb-1">{l.label}</div>
-              <div className="text-sm text-[var(--text-muted)] group-hover:text-[var(--text)] transition-colors">{l.value}</div>
+              <span style={{ fontSize: "0.65rem", letterSpacing: "0.18em", textTransform: "uppercase", color: "var(--accent)", width: "5.5rem", flexShrink: 0 }}>
+                {k}
+              </span>
+              <span style={{ fontSize: "0.875rem", color: "var(--text-muted)", flex: 1 }}>
+                {v}
+              </span>
+              <span style={{ color: "var(--text-muted)", fontSize: "0.8rem" }}>↗</span>
             </motion.a>
           ))}
         </div>
-
-        <motion.a
-          href="mailto:ismetbilgicc@gmail.com"
-          initial={{ opacity: 0 }}
-          animate={inView ? { opacity: 1 } : {}}
-          transition={{ delay: 0.5 }}
-          className="inline-block mt-12 px-10 py-4 text-xs tracking-widest uppercase border border-[var(--accent)] text-[var(--accent)] hover:bg-[var(--accent)] hover:text-[var(--bg)] transition-all duration-200"
-          style={{ animation: "pulse-glow 3s ease-in-out infinite" }}
-        >
-          Say Hello →
-        </motion.a>
       </motion.div>
     </section>
   );

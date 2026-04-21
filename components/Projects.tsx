@@ -105,10 +105,10 @@ export default function Projects() {
         animate={inView ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 0.7 }}
       >
-        <p className="text-[var(--accent)] text-xs tracking-[0.3em] uppercase mb-5 text-center">&#47;&#47; 04. projects</p>
-        <h2 className="text-4xl md:text-5xl font-bold mb-14 text-center">What I&apos;ve Built</h2>
+        <p style={{ color: "var(--accent)", fontSize: "0.75rem", letterSpacing: "0.3em", textTransform: "uppercase", marginBottom: "1.5rem", textAlign: "center" }}>&#47;&#47; 04. projects</p>
+        <h2 style={{ fontSize: "clamp(2rem, 5vw, 3.5rem)", fontWeight: 700, marginBottom: "4rem", textAlign: "center" }}>What I&apos;ve Built</h2>
 
-        <div className="grid md:grid-cols-2 gap-6">
+        <div className="grid md:grid-cols-2 gap-8">
           {projects.map((p, i) => (
             <motion.div
               key={p.name}
@@ -148,7 +148,7 @@ export default function Projects() {
               </div>
 
               {/* Card body */}
-              <div className="p-6 flex flex-col flex-1">
+              <div className="p-8 flex flex-col flex-1">
                 <div className="mb-4">
                   <span
                     className="text-[10px] tracking-widest uppercase px-2 py-1 border"

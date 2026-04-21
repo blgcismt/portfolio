@@ -70,55 +70,56 @@ export default function Experience() {
     <section
       id="experience"
       ref={ref}
-      className="flex flex-col items-center border-t border-[var(--border)] px-6 sm:px-8"
-      style={{ paddingTop: "7rem", paddingBottom: "7rem" }}
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        borderTop: "1px solid var(--border)",
+        padding: "7rem 2rem",
+      }}
     >
-      <div className="w-full max-w-4xl">
+      <div style={{ width: "100%", maxWidth: "56rem" }}>
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
         >
-          <p className="text-[var(--accent)] text-xs tracking-[0.3em] uppercase mb-5 text-center">&#47;&#47; 02. work</p>
-          <h2 className="text-4xl md:text-5xl font-bold mb-16 text-center">Experience</h2>
+          <p style={{ color: "var(--accent)", fontSize: "0.75rem", letterSpacing: "0.3em", textTransform: "uppercase", marginBottom: "1.5rem", textAlign: "center" }}>
+            &#47;&#47; 02. work
+          </p>
+          <h2 style={{ fontSize: "clamp(2rem, 5vw, 3.5rem)", fontWeight: 700, marginBottom: "3.5rem", textAlign: "center" }}>
+            Experience
+          </h2>
         </motion.div>
 
-        <div className="space-y-0">
+        <div>
           {experiences.map((e, i) => (
             <motion.div
               key={e.company + e.period}
               initial={{ opacity: 0, x: -24 }}
               animate={inView ? { opacity: 1, x: 0 } : {}}
               transition={{ delay: 0.15 + 0.28 * i, duration: 0.55, ease: [0.25, 0.46, 0.45, 0.94] }}
-              className="flex gap-8"
+              style={{ display: "flex", gap: "2rem" }}
             >
               {/* Timeline spine */}
-              <div className="flex flex-col items-center pt-1.5 shrink-0">
-                {/* Dot with pulse */}
-                <div className="relative w-3 h-3 shrink-0">
-                  {/* Ripple */}
+              <div style={{ display: "flex", flexDirection: "column", alignItems: "center", paddingTop: "0.375rem", flexShrink: 0 }}>
+                <div style={{ position: "relative", width: "0.75rem", height: "0.75rem", flexShrink: 0 }}>
                   <motion.div
-                    className="absolute inset-0 rounded-full"
-                    style={{ background: e.colorHex }}
+                    style={{ position: "absolute", inset: 0, borderRadius: "50%", background: e.colorHex }}
                     initial={{ opacity: 0, scale: 0 }}
                     animate={inView ? { opacity: [0, 0.5, 0], scale: [0.5, 2.8, 3.5] } : {}}
                     transition={{ delay: 0.15 + 0.28 * i, duration: 0.9, ease: "easeOut" }}
                   />
-                  {/* Dot */}
                   <motion.div
-                    className="absolute inset-0 rounded-full border-2"
-                    style={{ borderColor: e.color, background: "var(--bg)" }}
+                    style={{ position: "absolute", inset: 0, borderRadius: "50%", border: `2px solid ${e.colorHex}`, background: "var(--bg)" }}
                     initial={{ scale: 0 }}
                     animate={inView ? { scale: [0, 1.5, 1] } : {}}
                     transition={{ delay: 0.15 + 0.28 * i, duration: 0.5, times: [0, 0.55, 1], ease: "easeOut" }}
                   />
                 </div>
-
-                {/* Animated line segment */}
                 {i < experiences.length - 1 && (
                   <motion.div
-                    className="w-px flex-1 mt-2"
-                    style={{ background: "var(--border)", originY: 0 }}
+                    style={{ width: "1px", flex: 1, marginTop: "0.5rem", background: "var(--border)", transformOrigin: "top" }}
                     initial={{ scaleY: 0 }}
                     animate={inView ? { scaleY: 1 } : {}}
                     transition={{ delay: 0.3 + 0.28 * i, duration: 0.55, ease: "easeInOut" }}
@@ -127,34 +128,32 @@ export default function Experience() {
               </div>
 
               {/* Content */}
-              <div className="pb-14 flex-1 min-w-0">
+              <div style={{ paddingBottom: "4rem", flex: 1, minWidth: 0 }}>
                 <motion.div
                   initial={{ opacity: 0 }}
                   animate={inView ? { opacity: 1 } : {}}
                   transition={{ delay: 0.25 + 0.28 * i, duration: 0.5 }}
-                  className="mb-3"
+                  style={{ marginBottom: "2rem" }}
                 >
-                  <h3 className="text-lg font-bold leading-snug">
+                  <h3 style={{ fontSize: "1.2rem", fontWeight: 700, lineHeight: 1.4 }}>
                     {e.role}{" "}
-                    <span className="font-normal" style={{ color: e.color }}>
-                      @ {e.company}
-                    </span>
+                    <span style={{ fontWeight: 400, color: e.colorHex }}>@ {e.company}</span>
                   </h3>
-                  <p className="text-xs text-[var(--text-muted)] tracking-wide mt-1">
+                  <p style={{ fontSize: "0.75rem", color: "var(--text-muted)", letterSpacing: "0.05em", marginTop: "0.5rem" }}>
                     {e.period} · {e.location}
                   </p>
                 </motion.div>
 
-                <ul className="space-y-3 mb-5">
+                <ul style={{ display: "flex", flexDirection: "column", gap: "1.25rem", marginBottom: "2rem" }}>
                   {e.bullets.map((b, j) => (
                     <motion.li
                       key={j}
                       initial={{ opacity: 0, x: -12 }}
                       animate={inView ? { opacity: 1, x: 0 } : {}}
                       transition={{ delay: 0.35 + 0.28 * i + 0.07 * j, duration: 0.4 }}
-                      className="flex gap-3 text-sm text-[var(--text-muted)] leading-relaxed"
+                      style={{ display: "flex", gap: "0.875rem", fontSize: "0.875rem", color: "var(--text-muted)", lineHeight: 1.8, listStyle: "none" }}
                     >
-                      <span className="shrink-0 mt-0.5" style={{ color: e.color }}>›</span>
+                      <span style={{ flexShrink: 0, marginTop: "0.1rem", color: e.colorHex }}>›</span>
                       <span>{b}</span>
                     </motion.li>
                   ))}
@@ -164,13 +163,12 @@ export default function Experience() {
                   initial={{ opacity: 0 }}
                   animate={inView ? { opacity: 1 } : {}}
                   transition={{ delay: 0.45 + 0.28 * i, duration: 0.4 }}
-                  className="flex flex-wrap gap-2"
+                  style={{ display: "flex", flexWrap: "wrap", gap: "0.5rem" }}
                 >
                   {e.tags.map(t => (
                     <span
                       key={t}
-                      className="text-[10px] tracking-widest uppercase px-3 py-1 border border-[var(--border)] text-[var(--text-muted)]"
-                      style={{ background: "var(--bg-card)" }}
+                      style={{ fontSize: "0.625rem", letterSpacing: "0.15em", textTransform: "uppercase", padding: "0.25rem 0.75rem", border: "1px solid var(--border)", color: "var(--text-muted)", background: "var(--bg-card)" }}
                     >
                       {t}
                     </span>

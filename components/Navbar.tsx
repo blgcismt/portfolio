@@ -74,6 +74,15 @@ export default function Navbar() {
           ))}
         </ul>
 
+        {/* Terminal hint — desktop only */}
+        <button
+          onClick={() => window.dispatchEvent(new CustomEvent("open-terminal"))}
+          className="absolute right-6 sm:right-8 hidden md:flex items-center gap-1.5 text-[var(--text-muted)] hover:text-[var(--accent)] transition-colors duration-200"
+          aria-label="Open terminal"
+        >
+          <span style={{ fontFamily: "monospace", fontSize: "0.7rem", letterSpacing: "0.05em" }}>[ / ]</span>
+        </button>
+
         <div className="absolute right-6 sm:right-8 md:hidden">
           <MobileNav active={active} />
         </div>

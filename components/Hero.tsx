@@ -145,7 +145,7 @@ export default function Hero() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.9 }}
-          className="text-lg md:text-2xl text-[var(--text-muted)] mb-8 h-8 flex items-center gap-2"
+          className="text-lg md:text-2xl text-[var(--text-muted)] mb-10 h-8 flex items-center gap-2"
         >
           <span className="text-[var(--accent2)]">›</span>
           <span>{displayed}</span>
@@ -156,7 +156,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 1.1 }}
-          className="text-sm md:text-base text-[var(--text-muted)] max-w-xl leading-relaxed mb-10"
+          className="text-sm md:text-base text-[var(--text-muted)] max-w-xl leading-relaxed mb-14"
         >
           BASc Software Engineering @ University of Ottawa. Building data pipelines at Bombardier Aerospace.
           GPA 3.94 · Chancellor&apos;s Scholar.
@@ -187,6 +187,13 @@ export default function Hero() {
             className="text-xs tracking-widest uppercase text-[var(--text-muted)] hover:text-[var(--accent2)] transition-colors duration-200"
           >
             GitHub ↗
+          </a>
+          <a
+            href="/ISMET_BILGIC_RESUME.pdf"
+            download
+            className="text-xs tracking-widest uppercase text-[var(--text-muted)] hover:text-[var(--accent3)] transition-colors duration-200"
+          >
+            Resume ↓
           </a>
         </motion.div>
       </div>
