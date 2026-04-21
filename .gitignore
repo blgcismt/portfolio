@@ -30,9 +30,8 @@ yarn-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
 
-# env files — keep example in git, block everything else
+# env files
 .env*
-!.env.local.example
 
 # claude code internals
 .claude/

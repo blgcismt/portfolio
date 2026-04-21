@@ -63,7 +63,7 @@ export default function WordleGame({ lang, answer, guesses, currentInput, gameOv
       <div style={{ fontSize: "0.7rem", color: "var(--text-muted)", marginBottom: "0.75rem" }}>
         wordle <span style={{ color: "var(--accent)" }}>[{lang === "en" ? "english" : "turkish"}]</span>
         <span style={{ opacity: 0.5, marginLeft: "1rem" }}>
-          guess the {wordLen}-letter word · 6 attempts · r new word · q quit
+          daily word · same for everyone · 6 attempts · r retry · q quit
         </span>
       </div>
 

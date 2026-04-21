@@ -144,11 +144,18 @@ export default function Terminal() {
     setNavIdx(-1);
     setGameMode(null);
     setSubmitState(null);
+    setHistory([]);
+    setWordleGuesses([]);
+    setWordleGameOver(false);
+    setWordleWon(false);
+    setWordleError("");
+    setWordleStreak(0);
   }, []);
 
   const startWordleGame = useCallback((lang: WordleLang) => {
     const words = lang === "en" ? WORDS_EN : WORDS_TR;
-    const answer = words[Math.floor(Math.random() * words.length)];
+    const dayIndex = Math.floor(Date.now() / 86400000); // UTC days since epoch
+    const answer = words[dayIndex % words.length];
     setWordleAnswer(answer);
     setWordleLang(lang);
     setWordleGuesses([]);
