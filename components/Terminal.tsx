@@ -171,24 +171,34 @@ export default function Terminal() {
   }, [startWordleGame]);
 
   const saveToLeaderboard = useCallback(async (pending: NonNullable<SubmitState>, username: string) => {
-    const label = pending.type === "snake" ? `snake score [${pending.score}]` : `wordle streak [${pending.streak}]`;
+    const label = pending.type === "snake" ? `snake score [${pending.score}]` : `wordle streak`;
     setHistory(prev => [...prev, { input: `→ saving ${label}`, output: ["  saving..."] }]);
 
     try {
       const endpoint = pending.type === "snake" ? "/api/leaderboard/snake" : "/api/leaderboard/wordle";
+      // Wordle: server computes streak from last_win_day — don't send streak from client
       const body = pending.type === "snake"
         ? { username, score: pending.score }
-        : { username, streak: pending.streak, lang: pending.lang };
+        : { username, lang: pending.lang };
 
-      await fetch(endpoint, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) });
+      const res = await fetch(endpoint, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) });
+      const result = await res.json() as { ok?: boolean; streak?: number; error?: string };
 
       const lang = pending.type === "wordle" ? pending.lang : "en";
       const board = await fetchLeaderboard(pending.type, lang);
-      const successMsg = pending.type === "snake" ? "  ✓ score saved!" : "  ✓ streak saved!";
+
+      let topLine: string;
+      if (res.status === 409) {
+        topLine = `  already submitted today — current streak: ${result.streak}`;
+      } else if (pending.type === "snake") {
+        topLine = "  ✓ score saved!";
+      } else {
+        topLine = `  ✓ streak saved! — now at ${result.streak}`;
+      }
 
       setHistory(prev => {
         const next = [...prev];
-        next[next.length - 1] = { ...next[next.length - 1], output: [successMsg, "", ...board] };
+        next[next.length - 1] = { ...next[next.length - 1], output: [topLine, "", ...board] };
         return next;
       });
     } catch {
