@@ -70,12 +70,12 @@ export default function Experience() {
     <section
       id="experience"
       ref={ref}
+      className="py-16 sm:py-28 px-6 sm:px-8"
       style={{
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
         borderTop: "1px solid var(--border)",
-        padding: "7rem 2rem",
       }}
     >
       <div style={{ width: "100%", maxWidth: "56rem" }}>

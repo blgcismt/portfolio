@@ -33,6 +33,33 @@ body {
   body { cursor: auto; }
 }
 
+/* Terminal overlay */
+.terminal-modal-wrap {
+  position: fixed;
+  top: 15%;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  z-index: 9999;
+  pointer-events: none;
+}
+.terminal-modal-wrap > * {
+  pointer-events: auto;
+  max-height: 65vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+@media (max-width: 639px) {
+  .terminal-modal-wrap {
+    top: 4%;
+  }
+  .terminal-modal-wrap > * {
+    max-height: 88vh;
+  }
+}
+
 ::selection {
   background: var(--accent);
   color: var(--bg);

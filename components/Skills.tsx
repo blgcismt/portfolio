@@ -65,7 +65,8 @@ export default function Skills() {
     <section
       id="skills"
       ref={ref}
-      style={{ borderTop: "1px solid var(--border)", padding: "7rem 2rem" }}
+      className="py-16 sm:py-28 px-6 sm:px-8"
+      style={{ borderTop: "1px solid var(--border)" }}
     >
       <motion.div
         style={{ maxWidth: "56rem", margin: "0 auto" }}
@@ -96,7 +97,7 @@ export default function Skills() {
           </div>
 
           {/* JSON content */}
-          <div style={{ padding: "1.5rem 1.75rem", fontFamily: "monospace", fontSize: "0.85rem", lineHeight: 1.9, overflowX: "auto" }}>
+          <div className="px-4 sm:px-7 py-5 sm:py-6 text-xs sm:text-sm" style={{ fontFamily: "monospace", lineHeight: 1.9, overflowX: "auto" }}>
             {jsonLines.map((line, li) => (
               <motion.div
                 key={li}

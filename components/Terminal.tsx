@@ -368,16 +368,17 @@ export default function Terminal() {
             style={{ position: "fixed", inset: 0, background: "rgba(0,0,0,0.7)", zIndex: 9998, backdropFilter: "blur(4px)" }}
           />
 
+          {/* Centering wrapper — keeps position separate from Framer Motion transforms */}
+          <div className="terminal-modal-wrap">
           <motion.div
             initial={{ opacity: 0, y: -24, scale: 0.97 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: -16, scale: 0.97 }}
             transition={{ duration: 0.22, ease: [0.25, 0.46, 0.45, 0.94] }}
             style={{
-              position: "fixed", top: "15%", left: "50%", transform: "translateX(-50%)",
-              width: "min(640px, 92vw)", zIndex: 9999,
+              width: "min(640px, 92vw)",
               border: "1px solid var(--border)", background: "#0d0d14",
-              display: "flex", flexDirection: "column", maxHeight: "65vh",
+              display: "flex", flexDirection: "column",
               boxShadow: "0 0 60px rgba(0,212,255,0.08)",
             }}
           >
@@ -397,7 +398,7 @@ export default function Terminal() {
             </div>
 
             {/* Output area */}
-            <div style={{ flex: 1, overflowY: "auto", padding: "1.25rem 1.5rem", fontFamily: "monospace", fontSize: "0.8rem", lineHeight: 1.8 }}>
+            <div className="px-4 sm:px-6 py-4 sm:py-5" style={{ flex: 1, overflowY: "auto", fontFamily: "monospace", fontSize: "0.8rem", lineHeight: 1.8 }}>
               {gameMode?.type === "snake" ? (
                 <SnakeGame
                   onQuit={() => setGameMode(null)}
@@ -454,7 +455,7 @@ export default function Terminal() {
 
             {/* Input row — hidden during snake game */}
             {gameMode?.type !== "snake" && (
-              <div style={{ display: "flex", alignItems: "center", gap: "0.5rem", padding: "0.875rem 1.5rem", borderTop: "1px solid var(--border)", flexShrink: 0 }}>
+              <div className="px-4 sm:px-6 py-3 sm:py-4" style={{ display: "flex", alignItems: "center", gap: "0.5rem", borderTop: "1px solid var(--border)", flexShrink: 0 }}>
                 {submitState ? (
                   <>
                     <span style={{ fontFamily: "monospace", fontSize: "0.75rem", color: "#f59e0b", flexShrink: 0 }}>
@@ -484,6 +485,7 @@ export default function Terminal() {
               </div>
             )}
           </motion.div>
+          </div>
         </>
       )}
     </AnimatePresence>

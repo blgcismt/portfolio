@@ -96,8 +96,7 @@ export default function Projects() {
     <section
       id="projects"
       ref={ref}
-      className="flex flex-col items-center border-t border-[var(--border)] px-6 sm:px-8"
-      style={{ paddingTop: "7rem", paddingBottom: "7rem" }}
+      className="flex flex-col items-center border-t border-[var(--border)] px-6 sm:px-8 py-16 sm:py-28"
     >
       <motion.div
         className="w-full max-w-4xl"

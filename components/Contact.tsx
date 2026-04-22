@@ -15,7 +15,8 @@ export default function Contact() {
     <section
       id="contact"
       ref={ref}
-      style={{ borderTop: "1px solid var(--border)", padding: "7rem 2rem", display: "flex", flexDirection: "column", alignItems: "center" }}
+      className="py-16 sm:py-28 px-6 sm:px-8"
+      style={{ borderTop: "1px solid var(--border)", display: "flex", flexDirection: "column", alignItems: "center" }}
     >
       <motion.div
         style={{ width: "100%", maxWidth: "42rem" }}
@@ -31,7 +32,7 @@ export default function Contact() {
         </h2>
 
         {/* Status card */}
-        <div style={{ border: "1px solid var(--border)", background: "var(--bg-card)", padding: "2.25rem 2.5rem" }}>
+        <div className="p-5 sm:p-10" style={{ border: "1px solid var(--border)", background: "var(--bg-card)" }}>
 
           {/* Status bar */}
           <div style={{ display: "flex", alignItems: "center", gap: "0.625rem", marginBottom: "2rem" }}>
@@ -74,7 +75,7 @@ export default function Contact() {
               <span style={{ fontSize: "0.65rem", letterSpacing: "0.18em", textTransform: "uppercase", color: "var(--accent)", width: "5.5rem", flexShrink: 0 }}>
                 {k}
               </span>
-              <span style={{ fontSize: "0.875rem", color: "var(--text-muted)", flex: 1 }}>
+              <span style={{ fontSize: "0.875rem", color: "var(--text-muted)", flex: 1, wordBreak: "break-all" }}>
                 {v}
               </span>
               <span style={{ color: "var(--text-muted)", fontSize: "0.8rem" }}>↗</span>

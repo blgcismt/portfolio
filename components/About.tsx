@@ -16,12 +16,12 @@ export default function About() {
     <section
       id="about"
       ref={ref}
+      className="py-16 sm:py-28 px-6 sm:px-8"
       style={{
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
         borderTop: "1px solid var(--border)",
-        padding: "7rem 2rem",
       }}
     >
       <motion.div
@@ -37,7 +37,7 @@ export default function About() {
           Who I am
         </h2>
 
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: "4rem", marginBottom: "4rem" }}>
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))", gap: "2.5rem", marginBottom: "3rem" }}>
           <div style={{ display: "flex", flexDirection: "column", gap: "2rem", color: "var(--text-muted)", lineHeight: 1.9, fontSize: "1rem" }}>
             <p>
               I&apos;m a Software Engineering co-op student at the University of Ottawa,
@@ -87,14 +87,14 @@ export default function About() {
           </div>
         </div>
 
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "1.5rem" }}>
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(130px, 1fr))", gap: "1rem" }}>
           {stats.map(({ value, label, suffix }, i) => (
             <motion.div
               key={label}
               initial={{ opacity: 0, y: 20 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ delay: 0.15 * i }}
-              style={{ border: "1px solid var(--border)", padding: "3.5rem 1rem", textAlign: "center", background: "var(--bg-card)", transition: "border-color 0.3s", cursor: "default" }}
+              style={{ border: "1px solid var(--border)", padding: "2rem 1rem", textAlign: "center", background: "var(--bg-card)", transition: "border-color 0.3s", cursor: "default" }}
               onMouseEnter={e => { (e.currentTarget as HTMLElement).style.borderColor = "var(--accent)"; }}
               onMouseLeave={e => { (e.currentTarget as HTMLElement).style.borderColor = "var(--border)"; }}
             >
