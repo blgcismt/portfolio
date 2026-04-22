@@ -1,25 +1,55 @@
 "use client";
 
 export const WORDS_EN = [
-  "react", "stack", "async", "query", "debug", "array", "class", "fetch",
-  "state", "props", "build", "cache", "parse", "scope", "types", "proxy",
-  "hooks", "event", "await", "error", "pixel", "modal", "route", "token",
-  "merge", "patch", "index", "cloud", "model", "logic", "style", "input",
-  "table", "chart", "graph", "queue", "frame", "store", "media", "serve",
-  "codec", "agent", "local", "float", "split", "regex", "shell", "alias",
-  "crash", "spawn", "mutex", "chunk", "yield", "macro", "tuple", "union",
-  "loops", "bytes", "nodes", "redux", "axios", "clone", "swift", "heaps",
+  "apple","beach","beard","birth","black","blade","blame","blood","bloom","board",
+  "bonus","bored","bound","brain","brave","break","brick","bride","brief","bring",
+  "brush","buddy","burst","candy","catch","cause","chain","charm","chase","cheap",
+  "check","chess","chest","child","chill","claim","clean","clear","cliff","climb",
+  "clock","cloth","cloud","coach","coast","comic","count","court","cover","crack",
+  "craft","crane","crash","crazy","crowd","crown","cruel","crush","curve","cycle",
+  "dance","depth","dirty","doubt","drain","drama","dread","drink","drive","drunk",
+  "eagle","early","earth","eight","empty","enemy","enjoy","enter","equal","error",
+  "event","every","exact","extra","faint","fairy","faith","false","fancy","feast",
+  "fence","field","first","flame","flash","flesh","flood","floor","focus","force",
+  "forge","frame","fresh","ghost","given","glass","glide","gloom","gloss","glove",
+  "grace","grain","grasp","grass","grave","great","greed","green","greet","grief",
+  "group","guard","guide","habit","happy","harsh","heart","heavy","honey","honor",
+  "house","human","ideal","judge","juice","karma","knife","knock","known","label",
+  "laser","laugh","layer","learn","leave","level","light","limit","lives","logic",
+  "lover","lower","lucky","magic","major","maker","match","medal","merit","mercy",
+  "metal","might","minor","mixed","money","month","moral","mount","mouse","mouth",
+  "nerve","night","noble","noise","north","novel","ocean","offer","often","olive",
+  "orbit","order","outer","paint","panic","paste","pause","peace","pitch","place",
+  "plain","plane","plant","plate","point","pound","power","press","price","pride",
+  "print","prize","proof","proud","pulse","queen","quest","quick","quiet","quote",
+  "rally","ranch","range","rapid","reach","rebel","reply","rider","right","rival",
+  "river","rocky","rough","round","royal","ruler","sauce","scale","scene","scout",
+  "sense","serve","seven","shake","shame","shape","shark","sharp","shelf","shell",
+  "shift","shine","shirt","shout","sight","skill","skull","slash","slate","slave",
+  "sleep","slice","slide","smile","snake","sneak","solar","solve","sorry","south",
+  "spark","spawn","speak","spear","spend","spite","split","spray","stare","stark",
+  "start","steak","steam","steel","stern","stick","stiff","still","stomp","stood",
+  "storm","sunny","super","surge","swamp","swear","sweat","sweep","sweet","swift",
+  "swing","sword","table","taste","tense","thank","thick","thing","think","thorn",
+  "three","tiger","tired","toast","today","touch","tough","track","trade","trail",
+  "train","trend","trial","tribe","trick","truck","trust","truth","twice","twist",
+  "under","union","until","upper","upset","usual","value","vault","verse","video",
+  "vital","vivid","voice","watch","water","weary","weave","weird","wheat","wheel",
+  "while","white","whole","woman","worry","worse","worst","worth","write","young",
 ];
 
 export const WORDS_TR = [
-  "kitap", "kalem", "araba", "deniz", "haber", "resim", "yemek", "bilgi",
-  "nehir", "uzman", "orman", "insan", "hayat", "sabah", "erkek", "paket",
-  "fikir", "dergi", "kural", "yazar", "noter", "ekran", "girdi", "dosya",
-  "şehir", "müzik", "güzel", "köpek", "çocuk", "büyük", "küçük", "çanta",
-  "balık", "doğru", "bölüm", "yüzük", "köprü", "yarış", "akşam", "şeker",
-  "çiçek", "şarkı", "sınıf", "fırın", "çıktı", "tabak", "kanat", "simit",
-  "asker", "temel", "sebze", "meyve", "takım", "geçit", "çözüm", "keman",
-  "beyin", "sevgi", "tablo", "müdür", "özgür", "devir", "başka", "şişko",
+  "kitap","kalem","araba","deniz","haber","resim","yemek","bilgi","nehir","uzman",
+  "orman","insan","hayat","sabah","erkek","paket","fikir","dergi","kural","yazar",
+  "şehir","müzik","güzel","köpek","çocuk","büyük","küçük","çanta","balık","doğru",
+  "bölüm","yüzük","köprü","yarış","akşam","şeker","çiçek","şarkı","sınıf","fırın",
+  "tabak","kanat","simit","asker","temel","sebze","meyve","takım","geçit","keman",
+  "beyin","sevgi","tablo","müdür","özgür","başka","ekmek","zaman","kadın","bebek",
+  "mutlu","korku","siyah","beyaz","yeşil","hafta","fiyat","hesap","kahve","güneş",
+  "bulut","pembe","altın","bakır","demir","dünya","şapka","çorap","tatlı","börek",
+  "pilav","dolma","çorba","bahçe","armut","kiraz","kavun","çilek","soğan","biber",
+  "havuç","nohut","tavuk","koyun","aslan","tilki","karga","böcek","yunus","bacak",
+  "boyun","burun","kulak","dudak","sıcak","soğuk","radyo","tenis","saray","roman",
 ];
 
 export type Color = "green" | "yellow" | "gray" | "empty";
@@ -63,7 +93,7 @@ export default function WordleGame({ lang, answer, guesses, currentInput, gameOv
       <div style={{ fontSize: "0.7rem", color: "var(--text-muted)", marginBottom: "0.75rem" }}>
         wordle <span style={{ color: "var(--accent)" }}>[{lang === "en" ? "english" : "turkish"}]</span>
         <span style={{ opacity: 0.5, marginLeft: "1rem" }}>
-          daily word · same for everyone · 6 attempts · r retry · q quit
+          daily word · same for everyone · 6 attempts · q quit
         </span>
       </div>
 
@@ -114,13 +144,13 @@ export default function WordleGame({ lang, answer, guesses, currentInput, gameOv
               <span style={{ color: "var(--text-muted)" }}>  streak: </span>
               <span style={{ color: "var(--accent)" }}>{streak}</span>
               {streak > 0 && <span style={{ color: "var(--accent)", opacity: 0.7 }}>  ·  s save streak</span>}
-              <span style={{ color: "var(--text-muted)" }}>  ·  r new word  ·  q quit</span>
+              <span style={{ color: "var(--text-muted)" }}>  ·  q quit</span>
             </>
           ) : (
             <>
               <span style={{ color: "#ef4444" }}>the word was </span>
               <span style={{ color: "var(--accent)" }}>{answer}</span>
-              <span style={{ color: "var(--text-muted)" }}>  ·  streak reset  ·  r new word  ·  q quit</span>
+              <span style={{ color: "var(--text-muted)" }}>  ·  streak reset  ·  q quit</span>
             </>
           )}
         </div>

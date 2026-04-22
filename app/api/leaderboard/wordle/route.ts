@@ -4,16 +4,30 @@ export const dynamic = "force-dynamic";
 
 const SB_URL = process.env.SUPABASE_URL;
 const SB_KEY = process.env.SUPABASE_ANON_KEY;
+const VALID_LANGS = ["en", "tr"] as const;
+type Lang = (typeof VALID_LANGS)[number];
 
 function sbHeaders() {
   return { apikey: SB_KEY!, Authorization: `Bearer ${SB_KEY}`, "Content-Type": "application/json" };
 }
 
+function sanitizeUsername(raw: unknown): string | null {
+  if (typeof raw !== "string") return null;
+  // Strip all ASCII control characters (including \n \r \t \0)
+  const clean = raw.replace(/[\x00-\x1f\x7f]/g, "").trim().slice(0, 20);
+  return clean.length > 0 ? clean : null;
+}
+
+function isValidLang(lang: unknown): lang is Lang {
+  return VALID_LANGS.includes(lang as Lang);
+}
+
 export async function GET(req: NextRequest) {
   if (!SB_URL || !SB_KEY) return NextResponse.json([]);
-  const lang = req.nextUrl.searchParams.get("lang") ?? "en";
+  const rawLang = req.nextUrl.searchParams.get("lang") ?? "en";
+  if (!isValidLang(rawLang)) return NextResponse.json({ error: "invalid lang" }, { status: 400 });
   const res = await fetch(
-    `${SB_URL}/rest/v1/wordle_streaks?select=username,streak,updated_at&lang=eq.${lang}&order=streak.desc&limit=10`,
+    `${SB_URL}/rest/v1/wordle_streaks?select=username,streak,updated_at&lang=eq.${rawLang}&order=streak.desc&limit=10`,
     { headers: sbHeaders(), cache: "no-store" }
   );
   return NextResponse.json(await res.json());
@@ -22,13 +36,15 @@ export async function GET(req: NextRequest) {
 export async function POST(req: NextRequest) {
   if (!SB_URL || !SB_KEY) return NextResponse.json({ error: "not configured" }, { status: 503 });
 
-  const { username, lang } = await req.json();
-  if (!username || !["en", "tr"].includes(lang)) {
+  const body = await req.json();
+  const username = sanitizeUsername(body.username);
+  if (!username || !isValidLang(body.lang)) {
     return NextResponse.json({ error: "invalid" }, { status: 400 });
   }
+  const lang: Lang = body.lang;
 
   const today = Math.floor(Date.now() / 86400000); // UTC days since epoch
-  const encodedUser = encodeURIComponent(String(username).slice(0, 20));
+  const encodedUser = encodeURIComponent(username);
 
   // Check if this user already has a row
   const checkRes = await fetch(
@@ -64,7 +80,7 @@ export async function POST(req: NextRequest) {
   await fetch(`${SB_URL}/rest/v1/wordle_streaks`, {
     method: "POST",
     headers: { ...sbHeaders(), Prefer: "return=minimal" },
-    body: JSON.stringify({ username: String(username).slice(0, 20), lang, streak: 1, last_win_day: today }),
+    body: JSON.stringify({ username, lang, streak: 1, last_win_day: today }),
   });
 
   return NextResponse.json({ ok: true, streak: 1 });

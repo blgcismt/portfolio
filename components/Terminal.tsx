@@ -3,6 +3,7 @@ import { useEffect, useRef, useState, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import SnakeGame from "./SnakeGame";
 import WordleGame, { WORDS_EN, WORDS_TR, getColors } from "./WordleGame";
+import { VALID_EN, VALID_TR } from "@/lib/wordle-valid";
 import type { GuessRow } from "./WordleGame";
 
 type HistoryEntry = { input: string; output: string[] };
@@ -34,7 +35,7 @@ async function fetchLeaderboard(type: "snake" | "wordle", lang = "en"): Promise<
 
     const rows = data.map((row, i) => {
       const rank = `${i + 1}.`.padEnd(6);
-      const name = (row.username ?? "").slice(0, 18).padEnd(19);
+      const name = (row.username ?? "").replace(/[\r\n\t]/g, "").slice(0, 18).padEnd(19);
       const val = type === "snake" ? String(row.score ?? 0) : String(row.streak ?? 0);
       return `  ${rank}${name}${val}`;
     });
@@ -212,7 +213,6 @@ export default function Terminal() {
 
   const handleWordleGuess = useCallback((raw: string) => {
     const guess = raw.trim().toLowerCase();
-    if (guess === "r") { startWordleGame(wordleLang); return; }
     if (guess === "q") { setGameMode(null); return; }
     if (guess === "s" && wordleGameOver && wordleStreak > 0) {
       setGameMode(null);
@@ -229,6 +229,12 @@ export default function Terminal() {
       return;
     }
 
+    const validSet = wordleLang === "tr" ? VALID_TR : VALID_EN;
+    if (!validSet.has(guess)) {
+      setWordleError("  not a valid word");
+      return;
+    }
+
     const colors = getColors(guessChars, answerChars);
     const newGuesses: GuessRow[] = [...wordleGuesses, { letters: guessChars, colors }];
     const won = colors.every(c => c === "green");
@@ -242,7 +248,7 @@ export default function Terminal() {
       if (won) setWordleStreak(prev => prev + 1);
       else setWordleStreak(0);
     }
-  }, [wordleAnswer, wordleLang, wordleGuesses, wordleGameOver, wordleStreak, startWordleGame]);
+  }, [wordleAnswer, wordleLang, wordleGuesses, wordleGameOver, wordleStreak]);
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
