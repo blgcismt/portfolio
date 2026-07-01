@@ -11,7 +11,7 @@ const experiences = [
     color: "var(--accent)",
     colorHex: "#00d4ff",
     bullets: [
-      "Built a production real-time monitoring service (Python, SQLAlchemy, APScheduler) tracking a 480-aircraft fleet via a per-tail state machine with adaptive polling, circuit breakers, and automatic crash recovery — deploying on Snowflake to continuously record JetNet API flight data; backed by 118 automated tests and Alembic-versioned migrations.",
+      "Built a production real-time monitoring service (Python, SQLAlchemy, APScheduler) tracking a 480-aircraft fleet via a per-tail state machine with adaptive polling, circuit breakers, and automatic crash recovery, now deploying on Snowflake to continuously record JetNet API flight data; backed by 118 automated tests and Alembic-versioned migrations.",
       "Built a three-source validation engine (JetNet vs. internal Snowflake/AHMS vs. FlightAware), surfacing flights for 17 aircraft missing from internal systems (+3.7% coverage) and diagnosing a GPS vs. barometric altitude mismatch that lifted cruise agreement from under 20% to 95%.",
       "Developed a Python automation tool using FFT cross-correlation and multithreaded processing to validate signal lag across 1,400+ parameters, cutting a weeks-long process requiring 3–4 engineers to under an hour.",
       "Engineered two Snowflake views (300+ lines each) for Global 7500 and retrofit fleet watchlists, automating daily Power BI reporting via key-pair authentication and eliminating 1–1.5 days of weekly manual work for 50–60+ stakeholders.",
@@ -54,7 +54,7 @@ const experiences = [
     color: "var(--accent)",
     colorHex: "#00d4ff",
     bullets: [
-      "Built a Python (openpyxl) tool that auto-populated a 20-milestone-per-PCR tracking matrix from the source sheet, syncing completion, pushed, and cancelled statuses with dates — replacing a manual update run before and after each weekly program review.",
+      "Built a Python (openpyxl) tool that auto-populated a 20-milestone-per-PCR tracking matrix from the source sheet, syncing completion, pushed, and cancelled statuses with dates, replacing a manual update run before and after each weekly program review.",
       "Developed a Python script to scan Lotus Notes across ~150 PCRs, automatically detecting and flagging obsolete records left open past closure to improve project-tracking accuracy and data integrity.",
     ],
     tags: ["Python", "openpyxl", "Automation"],
