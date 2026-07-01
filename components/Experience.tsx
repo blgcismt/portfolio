@@ -11,12 +11,13 @@ const experiences = [
     color: "var(--accent)",
     colorHex: "#00d4ff",
     bullets: [
-      "Built Python automation with FFT cross-correlation & multithreading to validate 1,400+ parameters, cutting a weeks-long 3-4 engineer process to under an hour.",
-      "Engineered two Snowflake views (300+ lines each) automating daily Power BI reporting for 50–60+ stakeholders, eliminating 1–1.5 days of manual weekly work.",
-      "End-to-end Python data pipeline integrating Snowflake, AWS S3, and DSP sources for monthly aircraft KPIs, cutting a 2-hour manual process to 30 minutes.",
-      "Fleet-scale parameter investigation tools with direct AWS S3 streaming and autopilot event detection across Global 5000 & CL650 fleets.",
+      "Built a production real-time monitoring service (Python, SQLAlchemy, APScheduler) tracking a 480-aircraft fleet via a per-tail state machine with adaptive polling, circuit breakers, and automatic crash recovery — deploying on Snowflake to continuously record JetNet API flight data; backed by 118 automated tests and Alembic-versioned migrations.",
+      "Built a three-source validation engine (JetNet vs. internal Snowflake/AHMS vs. FlightAware), surfacing flights for 17 aircraft missing from internal systems (+3.7% coverage) and diagnosing a GPS vs. barometric altitude mismatch that lifted cruise agreement from under 20% to 95%.",
+      "Developed a Python automation tool using FFT cross-correlation and multithreaded processing to validate signal lag across 1,400+ parameters, cutting a weeks-long process requiring 3–4 engineers to under an hour.",
+      "Engineered two Snowflake views (300+ lines each) for Global 7500 and retrofit fleet watchlists, automating daily Power BI reporting via key-pair authentication and eliminating 1–1.5 days of weekly manual work for 50–60+ stakeholders.",
+      "Built an end-to-end Python data pipeline (validation, cleaning, processing, enrichment) integrating Snowflake, AWS S3, and DSP sources for monthly aircraft data-transfer KPIs, cutting a 2-hour manual process to 30 minutes.",
     ],
-    tags: ["Python", "Snowflake", "AWS S3", "Power BI", "FFT"],
+    tags: ["Python", "SQLAlchemy", "Snowflake", "AWS S3", "Power BI", "FFT"],
   },
   {
     company: "Scale AI",
@@ -26,12 +27,11 @@ const experiences = [
     color: "var(--accent2)",
     colorHex: "#7c3aed",
     bullets: [
-      "Oversaw code review and quality control for 250+ tasks across Python, Java, SQL, HTML/CSS, and JavaScript.",
-      "Achieved avg feedback score of 4.4/5 measured by client satisfaction.",
-      "Led a team of 120+ coders, coordinating assignments, maintaining quality, and ensuring timely delivery.",
-      "Improved AI model accuracy and localization across English, French, and Turkish models.",
+      "Served as a deputy lead within a ~1,000-contributor Turkish LLM-training pod (one of 15 in the program), coordinating reviewer feedback, quality standards, and escalation workflows while maintaining a 4.4/5 average client satisfaction score.",
+      "Earned top-tier 'Oracle' contributor status, reviewing and quality-controlling 250+ coding tasks across Python, Java, SQL, and JavaScript.",
+      "Improved model accuracy and localization across English, French, and Turkish models.",
     ],
-    tags: ["Python", "Java", "SQL", "JavaScript", "Team Leadership"],
+    tags: ["Python", "Java", "SQL", "JavaScript", "LLM", "Team Leadership"],
   },
   {
     company: "Deloitte",
@@ -41,11 +41,10 @@ const experiences = [
     color: "var(--accent3)",
     colorHex: "#f59e0b",
     bullets: [
-      "Python solutions with pandas & NumPy to categorize 47 types of stuck manifests, reducing resolution time from 45 min to 3–5 min.",
-      "Complex SQL queries in SSMS and MySQL automating data extraction and analysis.",
-      "PowerShell & Python scripts including Selenium-based tools, saving 20% man-hours over 4 months.",
+      "Engineered Python solutions (pandas, NumPy) to categorize 47 types of stuck manifests and automate troubleshooting, reducing resolution time from 45 minutes to 3–5 minutes.",
+      "Developed PowerShell and Python automation, including Selenium-based tools for pre-patch web verification and Excel data transfers, saving the team 20% in man-hours over four months.",
     ],
-    tags: ["Python", "pandas", "SQL", "PowerShell", "Selenium"],
+    tags: ["Python", "pandas", "PowerShell", "Selenium"],
   },
   {
     company: "Bombardier Aerospace",
@@ -55,10 +54,10 @@ const experiences = [
     color: "var(--accent)",
     colorHex: "#00d4ff",
     bullets: [
-      "Python & openpyxl automation for data transfer across file formats, cutting a week's work to 3 hours.",
-      "SQL-based milestone tracking automation, enhancing efficiency and accuracy of project monitoring.",
+      "Built a Python (openpyxl) tool that auto-populated a 20-milestone-per-PCR tracking matrix from the source sheet, syncing completion, pushed, and cancelled statuses with dates — replacing a manual update run before and after each weekly program review.",
+      "Developed a Python script to scan Lotus Notes across ~150 PCRs, automatically detecting and flagging obsolete records left open past closure to improve project-tracking accuracy and data integrity.",
     ],
-    tags: ["Python", "openpyxl", "SQL"],
+    tags: ["Python", "openpyxl", "Automation"],
   },
 ];
 
